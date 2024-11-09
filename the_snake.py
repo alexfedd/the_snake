@@ -41,7 +41,7 @@ clock = pygame.time.Clock()
 class GameObject:
     """Класс для объектов на поле игры."""
 
-    def __init__(self, position=(0, 0), body_color = (0, 0, 0)):
+    def __init__(self, position=(0, 0), body_color=(0, 0, 0)):
         """
         Инициализация объекта с заданной позицией и цветом.
 
