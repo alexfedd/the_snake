@@ -61,7 +61,7 @@ class Apple(GameObject):
 
     def __init__(self):
         """Инициализация яблока с случайной позицией."""
-        self.body_color = APPLE_COLOR
+        super().__init__((0, 0), APPLE_COLOR)  # Call parent constructor with dummy position
         self.randomize_position()
 
     def randomize_position(self):
@@ -83,11 +83,11 @@ class Snake(GameObject):
 
     def __init__(self):
         """Инициализация змейки с одной клеткой."""
+        super().__init__((SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2), SNAKE_COLOR) 
         self.length = 1
-        self.position = [(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)]
+        self.position = [self.position] 
         self.direction = RIGHT
         self.next_direction = None
-        self.body_color = SNAKE_COLOR
 
     def get_head_position(self):
         """Возврат позиции головы змейки."""
@@ -107,7 +107,7 @@ class Snake(GameObject):
                              (head_y + dy * GRID_SIZE) % SCREEN_HEIGHT)
 
         # Проверка на столкновение
-        if new_head_position in self.positions[1:]:
+        if new_head_position in self.position[1:]:
             self.reset()
             return
 
@@ -127,7 +127,7 @@ class Snake(GameObject):
         self.length = 1
         self.position = [(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2)]
         self.direction = RIGHT
-        self.last = None
+        self.next_direction = None
 
 
 def handle_keys(snake):
